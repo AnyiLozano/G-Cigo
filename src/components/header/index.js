@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
         }
     },
     appBar: {
-        backgroundColor: '#FFFFF3'
+        backgroundColor: '#FFFFF3',
     },
     toolbar: {
         display: 'flex',
@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
         width: '15%',
         '@media (max-width: 1024px)': {
             justifyContent: 'center',
-            width: '35vw'
+            width: '140px'
         }
     },
     div: {
@@ -66,7 +66,7 @@ const useStyles = makeStyles((theme) => ({
         fontWeight: 600
     },
     hamburguer: {
-        fontSize: '8vw'
+        fontSize: 35
     },
     drawer: {
         width: '50vw'
