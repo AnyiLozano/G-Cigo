@@ -12,7 +12,7 @@ import "../../styles/svg.scss";
 const useStyle = makeStyles({
     image1: {
         width: '100%',
-        height: '50vw',
+        height: '42vw',
         '@media (max-width: 1024px)': {
             height: 'auto'
         }
@@ -34,6 +34,20 @@ const useStyle = makeStyles({
         '@media (max-width: 1024px)': {
             width: '80vw'
         }
+    },
+    titleVideo: {
+        fontFamily: "Montserrat",
+        fontSize: 25,
+        fontWeight: "bold",
+        textAlign: "center",
+        color: "#723D7D"
+    },
+    description: {
+        fontFamily: "Montserrat",
+        fontWeight: 600,
+        fontSize: 20,
+        color: "#1BCDEA",
+        textAlign: "center"
     }
 })
 
@@ -70,7 +84,8 @@ const Videos = () => {
                         _.map(videosFinal, (item, index) => (
                             <Grid item lg={4} md={4} sm={12} key={index} className={classes.containervideo} l>
                                 <img src={item.image} alt="videos" className={classes.video} onClick={() => handleOpen(item.video_url)} />
-
+                                <h4 className={classes.titleVideo}>{item.title}</h4>
+                                <p className={classes.description}>{item.description}</p>
                             </Grid>
                         ))
                     }

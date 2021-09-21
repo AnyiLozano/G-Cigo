@@ -12,7 +12,8 @@ import {
 import MenuIcon from '@material-ui/icons/Menu';
 import useHeader from "./hook";
 import _ from "lodash";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import "../../styles/App.scss"
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -124,9 +125,9 @@ const Header = () => {
                                             <React.Fragment>
                                                 {
                                                     item && item.name !== undefined && (
-                                                        <Link to={item && item.path} className={classes.link} >
+                                                        <NavLink exact={item.name === "Inicio" ? true : false} to={item && item.path} className={classes.link} activeClassName="active-link-header">
                                                             <span className={classes.title}>{item && item.name}</span>
-                                                        </Link>
+                                                        </NavLink>
                                                     )
                                                 }
 
@@ -151,11 +152,13 @@ const Header = () => {
                                             <React.Fragment>
                                                 {
                                                     item && item.name !== undefined && (
-                                                        <Link to={item && item.path} className={classes.link}>
+                                                        <NavLink to={item && item.path} className={classes.link} isActive={(match, location) => {
+                                                            console.log(match)
+                                                          }}>
                                                             <ListItemText>
                                                                 <span className={classes.linkDrawer}>{item && item.name !== null ? item.name : 'no es'}</span>
                                                             </ListItemText>
-                                                        </Link>
+                                                        </NavLink>
                                                     )
                                                 }
                                             </React.Fragment>

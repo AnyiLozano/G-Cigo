@@ -42,16 +42,16 @@ const Routes = () => {
     return (
         <Router>
             <Switch>
-                <Route exact path="/" component={Home} />
-                <Route path="/videos" component={Videos} />
+                <Route exact path="/" component={Home}/>
+                <Route exact path="/videos" component={Videos} />
                 <Route exact path="/noticias" component={Noticias} />
                 <Route exact path="/eventos" component={Eventos} />
                 <Route exact path="/perfil" component={Perfil} />
                 <Route exact path="/iniciar-sesion" component={IniciarSesion} />
                 <Route exact path="/registro" component={Registro} />
-                <Route path="/activate-users" component={ActivateUsers} />
-                <Route path="/update-user" component={UpdateUser} />
-                <Route path="/acerca" component={Acerca} />
+                <Route exact path="/activate-users" component={ActivateUsers} />
+                <Route exact path="/update-user" component={UpdateUser} />
+                <Route exact path="/acerca" component={Acerca} />
             </Switch>
         </Router>
     )

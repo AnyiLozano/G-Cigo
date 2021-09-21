@@ -50,10 +50,10 @@ const UpdateUser = () => {
                 <Grid item lg={6} xs={12} className={classes.alignCenter}>
                     <div style={{ width: '100%' }}>
                         <Grid item xs={12} lg={12} className={classes.justifyCenter}>
-                            <input {...register('names')} type="text" className={classes.input} />
+                            <input {...register('names')} type="text" className={classes.input} placeholder="Nombre Completo" />
                         </Grid>
                         <Grid item xs={12} className={classes.justifyCenter}>
-                                <input {...register('speciality')} type="text" className={classes.input} />
+                                <input {...register('speciality')} type="text" className={classes.input} placeholder="Especialidad"/>
                         </Grid>
                         <Grid item xs={12} className={classes.justifyCenter}>
                             <Button className={classes.button} style={{ marginBottom: 30 }} onClick={handleSubmit(handleEditUser)}>Actualizar</Button>

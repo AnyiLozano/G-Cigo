@@ -21,8 +21,8 @@ const useUpdateUser = () => {
     // Form
     const {register, handleSubmit} = useForm({
         defaultValues: {
-            names: user.fullname,
-            speciality: user.speciality,
+            names: "",
+            speciality: "",
             image: user.avatar
         }
     });

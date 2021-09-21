@@ -13,7 +13,7 @@ const useStyle = makeStyles({
         }
     },
     event: {
-        width: '65%',
+        width: '60%',
         paddingBottom: '5%'
     },
     image5: {
@@ -26,11 +26,12 @@ const useStyle = makeStyles({
         paddingBottom: '5%'
     },
     texty: {
-        width: '90%'
+        width: '70%'
     },
     textpo: {
         display: 'flex',
         alignItems: 'center',
+        justifyContent: "center",
         '@media (max-width: 1024px)': {
             justifyContent: 'center',
             display: 'flex',
