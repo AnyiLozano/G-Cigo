@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+/** eslint-disable */
+import React, { useCallback, useState } from 'react';
 import { Container, Grid, makeStyles } from "@material-ui/core";
 import useVideos from "./hook";
 import _ from "lodash";
@@ -6,7 +7,6 @@ import { useHistory } from 'react-router';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import Modal from '@mui/material/Modal';
-import { Box } from '@mui/system';
 import "../../styles/svg.scss";
 
 const useStyle = makeStyles({
@@ -70,12 +70,14 @@ const Videos = () => {
         let currentPage = page;
         let pageSize = 6;
         let startPage, endPage;
+
         let totalPages = Math.ceil(videos.length / 6);
         setTotalPag(totalPages);
         if (totalPages <= 5) {
             startPage = 1;
             endPage = totalPages;
         } else {
+
             if (currentPage <= 3) {
                 startPage = 1;
                 endPage = 5;
@@ -91,18 +93,17 @@ const Videos = () => {
         let startIndex = (currentPage - 1) * pageSize;
         let endIndex = Math.min(startIndex + pageSize - 1, totalItems - 1);
 
-        let pages = [...Array(endPage + 1 - startPage).keys()].map(
-            i => startPage + i
-        );
-
         let pageOfItems = videos.slice(startIndex, endIndex + 1);
 
         setVideosFinal(pageOfItems)
     }
 
-    useEffect(() => {
-        perPage();
-    }, [])
+    useCallback(
+        () => {
+            perPage();
+        },
+        [perPage]
+    )
 
     const handleChange = (e, value) => {
         setPage(value);

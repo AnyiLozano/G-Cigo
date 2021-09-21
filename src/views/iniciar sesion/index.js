@@ -1,10 +1,9 @@
-import { Button, Fade, Grid, Link, Modal } from "@material-ui/core";
+import { Button, Fade, Grid, Modal } from "@material-ui/core";
 import React from "react";
 import { useHistory } from "react-router";
 import useLogin from "./hook";
 import useStyle from "./login.style";
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
 
 const style = {
     position: 'absolute',
