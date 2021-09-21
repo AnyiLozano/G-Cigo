@@ -40,18 +40,14 @@ const useStyle = makeStyles({
 const Videos = () => {
     const classes = useStyle();
 
-    const { videos, accessToken } = useVideos();
+    const { videosFinal, accessToken, handleChange, totalPag, page } = useVideos();
 
     const history = useHistory();
-    console.log(videos)
 
     if (accessToken === undefined) {
         history.push('/iniciar-sesion')
     }
 
-    const [videosFinal, setVideosFinal] = useState([]);
-    const [page, setPage] = React.useState(1);
-    const [totalPag, setTotalPag] = React.useState(Math.ceil(videos.length / 6));
     const [open, setOpen] = React.useState(false);
     const [value, setValue] = React.useState(null);
 
@@ -64,53 +60,6 @@ const Videos = () => {
     const handleClose = () => {
         setOpen(false);
     };
-
-    const perPage = () => {
-        let totalItems = videos.length
-        let currentPage = page;
-        let pageSize = 6;
-        let startPage, endPage;
-
-        let totalPages = Math.ceil(videos.length / 6);
-        setTotalPag(totalPages);
-        if (totalPages <= 5) {
-            startPage = 1;
-            endPage = totalPages;
-        } else {
-
-            if (currentPage <= 3) {
-                startPage = 1;
-                endPage = 5;
-            } else if (currentPage + 2 >= totalPages) {
-                startPage = totalPages - 4;
-                endPage = totalPages;
-            } else {
-                startPage = currentPage - 2;
-                endPage = currentPage + 2;
-            }
-        }
-
-        let startIndex = (currentPage - 1) * pageSize;
-        let endIndex = Math.min(startIndex + pageSize - 1, totalItems - 1);
-
-        let pageOfItems = videos.slice(startIndex, endIndex + 1);
-
-        setVideosFinal(pageOfItems)
-    }
-
-    useCallback(
-        () => {
-            perPage();
-        },
-        [perPage]
-    )
-
-    const handleChange = (e, value) => {
-        setPage(value);
-        perPage();
-    }
-
-
 
     return (
         <React.Fragment>
@@ -125,11 +74,7 @@ const Videos = () => {
                             </Grid>
                         ))
                     }
-                    <Grid item lg={12} tyle={{ display: 'flex', justifyContent: 'center' }}>
-                        <Stack spacing={2}>
-                            <Pagination count={totalPag} color="secondary" page={page} onChange={handleChange} />
-                        </Stack>
-                    </Grid>
+
                 </Grid>
                 <Modal open={open} style={{ backgroundColor: "#00000026" }}>
 
@@ -145,6 +90,11 @@ const Videos = () => {
 
                     </Grid>
                 </Modal>
+                <Grid item lg={12} style={{ display: 'flex', justifyContent: 'center' }}>
+                    <Stack spacing={2}>
+                        <Pagination count={totalPag} color="secondary" page={page} onChange={handleChange} />
+                    </Stack>
+                </Grid>
             </Container>
         </React.Fragment>
     )
