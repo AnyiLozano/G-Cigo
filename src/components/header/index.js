@@ -12,7 +12,7 @@ import {
 import MenuIcon from '@material-ui/icons/Menu';
 import useHeader from "./hook";
 import _ from "lodash";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -26,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
     },
     appBar: {
         backgroundColor: '#FFFFF3',
+        position: 'relative'
     },
     toolbar: {
         display: 'flex',
@@ -63,18 +64,25 @@ const useStyles = makeStyles((theme) => ({
         fontFamily: 'Montserrat, sans-serif',
         fontSize: 25,
         color: '#723D7D',
-        fontWeight: 600
+        fontWeight: 600,
+        '@media (min-width: 1025px) and (max-width: 1435px )': {
+            fontSize: 16,
+        }
     },
     hamburguer: {
         fontSize: 35
     },
     drawer: {
-        width: '50vw'
+        width: '50vw',
+        backgroundColor: '#FFFFF3',
+        height: '100vh'
     },
     linkDrawer: {
         fontSize: '4vw',
         fontFamily: 'Montserrat, sans-serif',
-        fontWeight: 600
+        fontWeight: 600,
+        color: "#bc65ce"
+
     }
 }));
 
@@ -85,50 +93,88 @@ const Header = () => {
         links,
         closeDrawer,
         anchor,
-        openDrawer
+        openDrawer,
+        handlerCloseSesion,
+        accessToken
     } = useHeader();
 
-    return(
+    return (
         <AppBar className={classes.appBar}>
 
             <Toolbar className={classes.toolbar_logo}>
-                <IconButton edge="start" className={classes.menuButton} color="primary" aria-label="menu" onClick={() => openDrawer(true)}>
-                    <MenuIcon className={classes.hamburguer}/>
-                </IconButton>
+                {
+                    accessToken !== undefined && (
+                        <IconButton edge="start" className={classes.menuButton} color="primary" aria-label="menu" onClick={() => openDrawer(true)}>
+                            <MenuIcon className={classes.hamburguer} />
+                        </IconButton>
+                    )
+                }
 
-                <img src="/images/logo.png" className={classes.logo} alt="logo-g-cigo"/>
+                <img src="/images/logo.png" className={classes.logo} alt="logo-g-cigo" />
                 <div className={classes.div}></div>
             </Toolbar>
-            <Toolbar className={classes.toolbar}>
-                {
-                    _.map(links, (item, index) => (
-                        <React.Fragment>
-                            <Link to={item.path} className={classes.link} key={index}>
-                                <span className={classes.title}>{item.name}</span>
-                            </Link>
-                        </React.Fragment>
-                    ))
-                }
-            </Toolbar>
+            {
+                accessToken !== undefined && (
+                    <Toolbar className={classes.toolbar}>
+                        {
+                            _.map(links, (item, index) => (
+                                <React.Fragment key={index}>
+                                    {
+                                        (
+                                            <React.Fragment>
+                                                {
+                                                    item && item.name !== undefined && (
+                                                        <Link to={item && item.path} className={classes.link} >
+                                                            <span className={classes.title}>{item && item.name}</span>
+                                                        </Link>
+                                                    )
+                                                }
+
+                                            </React.Fragment>
+                                        )
+                                    }
+                                </React.Fragment>
+                            ))
+                        }
+                        <span className={classes.title} onClick={() => handlerCloseSesion()}>Cerrar Sesión</span>
+                    </Toolbar>
+                )
+            }
             <Drawer anchor="left" open={anchor} onClose={() => closeDrawer(false)}>
-                <List  className={classes.drawer}>
+                <List className={classes.drawer}>
                     {
                         _.map(links, (item, index) => (
-                            <React.Fragment>
-                                <ListItem button key={index}>
-                                    <Link to={item.path} className={classes.link}>
-                                        <ListItemText>
-                                            <span className={classes.linkDrawer}>{item.name}</span>
-                                        </ListItemText>
-                                    </Link>
+                            <React.Fragment key={index}>
+                                <ListItem button >
+                                    {
+                                        (
+                                            <React.Fragment>
+                                                {
+                                                    item && item.name !== undefined && (
+                                                        <Link to={item && item.path} className={classes.link}>
+                                                            <ListItemText>
+                                                                <span className={classes.linkDrawer}>{item && item.name !== null ? item.name : 'no es'}</span>
+                                                            </ListItemText>
+                                                        </Link>
+                                                    )
+                                                }
+                                            </React.Fragment>
+                                        )
+                                    }
+
                                 </ListItem>
 
                             </React.Fragment>
                         ))
                     }
+                    <ListItem>
+                        <ListItemText>
+                            <span className={classes.linkDrawer} onClick={() => handlerCloseSesion()}>Cerrar Sesión</span>
+                        </ListItemText>
+                    </ListItem>
                 </List>
             </Drawer>
-        </AppBar>
+        </AppBar >
     )
 }
 

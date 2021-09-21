@@ -1,6 +1,24 @@
 import {useState} from "react";
+import { useSelector } from "react-redux";
+import { useHistory } from "react-router";
+import useActions from "../../../store/actions";
+import useSelectors from "../../../store/selectors";
 
 const useHeader = () => {
+    // actions
+    const { dispatch, useAuthActions} = useActions();
+    const { actLogout } = useAuthActions();
+
+    // Selectors
+    const { useAuthSelectors } = useSelectors();
+    const { auth } = useAuthSelectors();
+    const authSelector = useSelector(auth);
+    const { accessToken, roles } = authSelector;
+
+    const history = useHistory()
+
+    
+
     const links = [
         {
             name: 'Inicio',
@@ -8,16 +26,24 @@ const useHeader = () => {
         },
         {
             name: 'Videos',
-            path: '/'
+            path: '/videos'
         },
         {
             name: 'Noticias',
-            path: '/'
+            path: '/noticias'
         },
         {
             name: 'Eventos',
-            path: '/'
-        }
+            path: '/eventos'
+        },
+        {
+            name: 'Perfil',
+            path: '/perfil'
+        },
+        (accessToken !== undefined && roles[0] === "Admin" ? {
+            name: 'Activación usuarios',
+            path: '/activate-users'
+        }: undefined)
     ];
 
     const [anchor, setAnchor] = useState(false);
@@ -26,15 +52,25 @@ const useHeader = () => {
         setAnchor(close)
     }
 
+
     const openDrawer = (open) => {
         setAnchor(open)
+    }
+
+    const handlerCloseSesion = () => {
+        dispatch(actLogout(() => {
+            history.push('/iniciar-sesion')
+        }));
+        
     }
 
     return {
         links,
         anchor,
         closeDrawer,
-        openDrawer
+        openDrawer,
+        handlerCloseSesion,
+        accessToken
     }
 }
 export default useHeader;
