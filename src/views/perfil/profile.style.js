@@ -24,7 +24,7 @@ const useStyle = makeStyles({
         backgroundImage: "url(/images/perf.png)",
         backgroundSize: '100% 100%',
         backgroundRepeat: 'no-repeat',
-        height: '32vw',
+        height: '50vw',
         '@media (max-width: 1024px)': {
             height: '100%'
         }
@@ -32,7 +32,8 @@ const useStyle = makeStyles({
     containerSvg: {
         paddingTop: 50,
         display: 'flex',
-        justifyContent: 'flex-end'
+        justifyContent: 'flex-end',
+        alignItems: 'flex-end'
     },
     text1: {
         fill: '#fff',
