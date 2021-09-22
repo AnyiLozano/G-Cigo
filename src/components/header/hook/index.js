@@ -36,14 +36,15 @@ const useHeader = () => {
             name: 'Eventos',
             path: '/eventos'
         },
+        (accessToken !== undefined && roles[0] === "Admin" ? {
+            name: 'Activación usuarios',
+            path: '/activate-users'
+        }: undefined),
         {
             name: 'Perfil',
             path: '/perfil'
         },
-        (accessToken !== undefined && roles[0] === "Admin" ? {
-            name: 'Activación usuarios',
-            path: '/activate-users'
-        }: undefined)
+        
     ];
 
     const [anchor, setAnchor] = useState(false);
