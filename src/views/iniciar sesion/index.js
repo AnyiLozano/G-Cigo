@@ -42,11 +42,11 @@ const IniciarSesion = () => {
     }
 
     return (
-        <React.Fragment>
+        <React.Fragment>      
             <Grid container className={classes.image1}>
                 <Grid item lg={8} md={12} xs={12} sm={12} className={classes.image3}>
                     <img src="/images/show.png" alt="show" className={classes.image2} />
-                </Grid>
+                </Grid>  
 
                 <Grid item lg={4} md={12} xs={12} sm={12} className={classes.alignCenter}>
                     {
