@@ -41,7 +41,7 @@ const useStyle = makeStyles({
         fontFamily: 'Montserrat',
         fontSize: body * 0.017,
         '@media (max-width: 414px)': {
-            fontSize: '8vw',
+            fontSize: '8vw',       
         }
     },
     button: {
