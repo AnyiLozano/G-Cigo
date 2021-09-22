@@ -7,7 +7,7 @@ import {Link, useHistory} from "react-router-dom";
 const useStyle = makeStyles({
     image3: {
         width: '100%',
-        height: '45vw',
+        height: '50vw',
         '@media (max-width: 1024px)': {
             height: 'auto'
         }

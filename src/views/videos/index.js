@@ -12,7 +12,7 @@ import "../../styles/svg.scss";
 const useStyle = makeStyles({
     image1: {
         width: '100%',
-        height: '42vw',
+        height: '50vw',
         '@media (max-width: 1024px)': {
             height: 'auto'
         }
