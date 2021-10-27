@@ -1,0 +1,17 @@
+.slick-dots {
+    bottom: 6%;
+}
+
+.slick-dots li.slick-active button:before {
+    color: #BD65CF;
+    opacity: 1;
+}
+
+.slick-dots li button:before {
+    font-size: 20px;
+    color: white;
+}
+
+.active-link-header span {
+    border-bottom: 3px solid #1BCDEA
+}
