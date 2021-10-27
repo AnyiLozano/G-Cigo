@@ -8,7 +8,7 @@ const useStyle = makeStyles({
         height: '100%',
         '@media (max-width: 1024px)': {
             height: 'auto',
-            padding: '50px 0'
+            padding: '50px 0' 
         }
     },
     svg: {

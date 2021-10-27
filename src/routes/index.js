@@ -2,10 +2,11 @@ import React from "react";
 import MainLayout from "../layout";
 import {
     Route as DefaultRoute,
-    BrowserRouter as Router,
+    BrowserRouter,
     Switch,
 } from 'react-router-dom';
 import useScreens from "../views";
+import { createBrowserHistory } from "history";
 
 const Route = ({
     component: Component,
@@ -25,6 +26,8 @@ const Route = ({
     )
 }
 
+const history = createBrowserHistory();
+
 const Routes = () => {
     const {
         Home,
@@ -40,11 +43,11 @@ const Routes = () => {
     } = useScreens();
 
     return (
-        <Router>
+        <BrowserRouter forceRefresh={true}>
             <Switch>
                 <Route exact path="/" component={Home}/>
-                <Route exact path="/videos" component={Videos} />
-                <Route exact path="/noticias" component={Noticias} />
+                <Route exact  path="/videos" component={Videos} />
+                <Route exact  path="/noticias" component={Noticias} />
                 <Route exact path="/eventos" component={Eventos} />
                 <Route exact path="/perfil" component={Perfil} />
                 <Route exact path="/iniciar-sesion" component={IniciarSesion} />
@@ -53,7 +56,7 @@ const Routes = () => {
                 <Route exact path="/update-user" component={UpdateUser} />
                 <Route exact path="/acerca" component={Acerca} />
             </Switch>
-        </Router>
+        </BrowserRouter>
     )
 }
 export default Routes;
