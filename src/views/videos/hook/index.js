@@ -22,43 +22,20 @@ const useVideos = () => {
     const [videosFinal, setVideosFinal] = useState([]);
 
     // Handlers
-    const perPage = () => {
-        let totalItems = videos.length,
-            currentPage = page,
-            pageSize = 6,
-            startPage = null,
-            endPage = null,
-            totalPages = Math.ceil(videos.length / pageSize);
+    const perPage = (pageNumber) => {
+        const pageProp = pageNumber !== undefined ? pageNumber : page;
+        if(pageNumber !== undefined) {
+            setPage(parseInt(pageNumber));
+        }
 
-            setTotalPag(totalPages);
+        setTotalPag(Math.ceil(videos.length / 6));
+        const Videos = videos.slice((pageProp - 1) * 6, pageProp * 6)
 
-            if(currentPage <= 5){
-                startPage = 1;
-                endPage = totalPages;
-            } else {
-                if (currentPage <= 3) {
-                    startPage = 1;
-                    endPage = 5;
-                } else if (currentPage + 2 >= totalPages) {
-                    startPage = totalPages - 4;
-                    endPage = totalPages;
-                } else {
-                    startPage = currentPage - 2;
-                    endPage = currentPage + 2;
-                }
-            }
-
-            let startIndex = (currentPage - 1) * pageSize;
-            let endIndex = Math.min(startIndex + pageSize - 1, totalItems - 1);
-    
-            let pageOfItems = videos.slice(startIndex, endIndex + 1);
-    
-            setVideosFinal(pageOfItems);
+        setVideosFinal(Videos);
     }
 
-    const handleChange = (e, value) => {
-        setPage(value);
-        perPage();
+    const handleChange = (e) => {
+        perPage(e.target.innerText);
     }
 
     // Effects
