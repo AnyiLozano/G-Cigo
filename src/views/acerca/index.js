@@ -19,7 +19,7 @@ const useStyle = makeStyles({
         padding: '30px 0',
     },
     texty: {
-        width: '50vw'
+        width: '50vw'    
 
     },
     vide: {
