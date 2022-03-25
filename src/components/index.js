@@ -9,6 +9,6 @@ const useComponents = () => {
         Footer,
         Carousel
     }
-}
+}     
 
 export default useComponents;
